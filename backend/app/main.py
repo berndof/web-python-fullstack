@@ -4,7 +4,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from app.api import api_router
-from app.database import populate_db
+from app.database import session_manager
+from app.models import Base
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -15,9 +16,9 @@ async def lifespan(app: FastAPI):
     Function that handles startup and shutdown events.
     Read https://fastapi.tiangolo.com/advanced/events/
     """
-    # Temporario
-    await populate_db()
-    #
+    # Temporario | create db tables
+    async with session_manager.connect() as connection:
+        await connection.run_sync(Base.metadata.create_all)
     logging.info("Starting lifecycle")
     try:
         yield
