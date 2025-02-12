@@ -19,7 +19,6 @@ class Base(DeclarativeBase):
 
 
 class DatabaseSessionManager:
-    # Heavily inspired by https://praciano.com.br/fastapi-and-async-sqlalchemy-20-with-pytest-done-right.html
     def __init__(self, host: str, engine_kwargs: dict[str, Any] | None = None):
         if engine_kwargs is None:
             engine_kwargs = {}

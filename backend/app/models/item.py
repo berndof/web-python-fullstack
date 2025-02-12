@@ -4,7 +4,7 @@ from . import Base
 
 
 class Item(Base):
-    __tablename__ = "items"
+    __tablename__ = "item"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, index=True)
     name: Mapped[str] = mapped_column(index=True)
