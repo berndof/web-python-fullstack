@@ -6,8 +6,8 @@ router = APIRouter(prefix="/item", tags=["item"])
 
 
 @router.get("/")
-def get_items():
-    return [{"name": "Item Foo"}, {"name": "item Bar"}]
+async def get_items(repository=Depends(get_item_repository)):  # type: ignore
+    return await repository.get_all()
 
 
 @router.get("/create")

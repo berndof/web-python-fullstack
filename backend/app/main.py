@@ -25,7 +25,7 @@ async def lifespan(app: FastAPI):
     try:
         yield
     finally:
-        # await cleanup()
+        await session_manager.close()
         logging.info("Ending lifecycle")
 
 
