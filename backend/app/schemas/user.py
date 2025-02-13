@@ -1,16 +1,25 @@
 import uuid
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
-class BaseUser(BaseModel):
+class UserBase(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     username: str
-    fist_name: str
+    first_name: str
     last_name: str
 
 
-class UserResponse(BaseUser):
+class UserResponse(UserBase):
     id: uuid.UUID
     created_at: datetime
     updated_at: datetime
+
+
+class UserCreate(UserBase):
+    username: str
+    password: str
+    first_name: str
+    last_name: str
