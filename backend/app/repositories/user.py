@@ -1,4 +1,3 @@
-from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
@@ -25,11 +24,7 @@ class UserRepository:
         result = await self.session.execute(selection_query)
         return result.scalar_one_or_none()
 
-    async def create(self, user_in: UserCreate):
-        exists = await self.get_by_username(user_in.username)
-        if exists:
-            raise HTTPException(status_code=400, detail="User already exists")
-
+    async def create(self, user_in: UserCreate) -> User:
         new_user = User(
             username=user_in.username,
             password=user_in.password,
@@ -37,5 +32,6 @@ class UserRepository:
             last_name=user_in.last_name,
         )
         self.session.add(new_user)
+        await self.session.flush()
         await self.session.refresh(new_user)
         return new_user

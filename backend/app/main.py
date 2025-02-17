@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from app.api.v1.routes import v1_api_router
-from app.database import session_manager
+from app.core.database import session_manager
 from app.models import Base
 
 logging.basicConfig(level=logging.DEBUG)

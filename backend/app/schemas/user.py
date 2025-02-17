@@ -19,7 +19,4 @@ class UserResponse(UserBase):
 
 
 class UserCreate(UserBase):
-    username: str
     password: str
-    first_name: str
-    last_name: str

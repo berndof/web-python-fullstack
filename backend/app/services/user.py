@@ -1,3 +1,4 @@
+from app.core.exceptions import UserAlreadyExistsException
 from app.repositories import UserRepository
 from app.schemas import UserCreate
 
@@ -7,4 +8,8 @@ class UserService:
         self.repository = repository
 
     async def create(self, user_in: UserCreate):
-        return await self.repository.create(user_in)
+        exists = await self.repository.get_by_username(user_in.username)
+        if exists:
+            raise UserAlreadyExistsException()
+        new_user = await self.repository.create(user_in)
+        return new_user
