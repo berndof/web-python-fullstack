@@ -42,7 +42,6 @@ class DatabaseSessionManager:
 
         async with self._engine.begin() as connection:
             try:
-                print("######### connection created")
                 yield connection
             except Exception as e:
                 await connection.rollback()
@@ -55,14 +54,12 @@ class DatabaseSessionManager:
 
         async with self._sessionmaker() as session:
             try:
-                print("######### session created")
                 yield session
                 await session.commit()
             except Exception as e:
                 await session.rollback()
                 raise e
             finally:
-                print("######### session closed")
                 await session.close()
 
 
