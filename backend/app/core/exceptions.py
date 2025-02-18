@@ -19,7 +19,5 @@ class UserNotFoundException(AppException):
 
 
 class InvalidCredentialsException(AppException):
-    def __init__(self):
-        super().__init__(
-            error_code="INVALID_CREDENTIALS", message="Invalid credentials", status_code=status.HTTP_401_UNAUTHORIZED
-        )
+    def __init__(self, message: str = "Invalid credentials"):
+        super().__init__(error_code="INVALID_CREDENTIALS", message=message, status_code=status.HTTP_401_UNAUTHORIZED)

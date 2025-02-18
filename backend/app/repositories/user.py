@@ -3,7 +3,6 @@ from sqlalchemy.future import select
 
 from app.models import User
 from app.schemas import UserCreate
-from app.utils import hash_password
 
 
 class UserRepository:
@@ -26,9 +25,11 @@ class UserRepository:
         return result.scalar_one_or_none()
 
     async def create(self, user_in: UserCreate) -> User:
+        from app.core.security import get_password_hash
+
         new_user = User(
             username=user_in.username,
-            password=hash_password(user_in.password),
+            password=get_password_hash(user_in.password),
             first_name=user_in.first_name,
             last_name=user_in.last_name,
         )
