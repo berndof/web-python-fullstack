@@ -16,3 +16,10 @@ class UserAlreadyExistsException(AppException):
 class UserNotFoundException(AppException):
     def __init__(self):
         super().__init__(error_code="USER_NOT_FOUND", message="User not found", status_code=status.HTTP_404_NOT_FOUND)
+
+
+class InvalidCredentialsException(AppException):
+    def __init__(self):
+        super().__init__(
+            error_code="INVALID_CREDENTIALS", message="Invalid credentials", status_code=status.HTTP_401_UNAUTHORIZED
+        )
