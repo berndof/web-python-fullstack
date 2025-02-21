@@ -1,0 +1,6 @@
+.env
+.python-version
+package-lock.json
+dist/
+node_modules/
+__pycache__/

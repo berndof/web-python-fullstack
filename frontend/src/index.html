@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  {% block meta %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% endblock meta %}
+
+
+  <!-- Tailwind CSS-->
+  <link href="/static/app.css" rel="stylesheet">
+
+  <!-- Incluindo o bundle js | Franken UI + Alpine -->
+  <script src="/static/app.js" type="module"></script>
+
+  <title>{% block title %}{% endblock title %}</title>
+
+  {% block head %}
+
+  {% endblock head %}
+</head>
+
+<body class="p-6 bg-purple-500">
+
+  <div class="container mx-auto max-w-md">
+    <h1 class="text-3xl font-bold mb-4 bg-purple-500">Testando Franken UI</h1>
+
+    <!-- Botão do Franken UI -->
+    <button class="uk-button uk-button-primary">
+      Clique Aqui
+    </button>
+
+    <!-- Card do Franken UI -->
+    <div class="uk-card uk-card-default uk-card-body mt-6">
+      <h3 class="uk-card-title">Franken UI Card</h3>
+      <p>Este é um card de teste usando Franken UI.</p>
+    </div>
+  </div>
+
+</body>
+
+</html>
