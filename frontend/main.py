@@ -15,5 +15,5 @@ templates = Jinja2Templates(directory="src")
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     return templates.TemplateResponse(
-        "index.html", {"request": request, "title": "Meu Projeto Frontend"}
+        "pages/home.html", {"request": request, "title": "Meu Projeto Frontend"}
     )

@@ -3,17 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:css": "tailwindcss -i ./src/app.css -o ./dist/app.css",
-    "build:js": "esbuild src/app.js --bundle --outfile=dist/app.js",
+    "build:css": "tailwindcss -i ./src/static/app.css -o ./dist/app.css",
+    "build:js": "esbuild src/static/app.js --bundle --outfile=dist/app.js",
     "build": "npm run build:css && npm run build:js",
-    "dev": "uv run fastapi run --reload"
+    "build:watch": "npm run build:css -- --watch && npm run build:js -- --watch",
+    "dev": "concurrently \"npm run build:watch\" \"uv run fastapi dev\" \"livereload\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "esbuild": "^0.25.0"
+    "esbuild": "^0.25.0",
+    "concurrently": "^9.1.2"
   },
   "dependencies": {
     "alpinejs": "^3.14.8",
