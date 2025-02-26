@@ -1,11 +1,18 @@
-{% extends "layouts/base.html" %}
+{% extends "templates/base.html" %}
 
 {% block body %}
+<div x-cloak x-init="$store.auth.checkLogin()" x-show="$store.auth.user" !=null"
+    class="relative flex w-full flex-col md:flex-row">
 
-<body>
-    <div class="uk-container-expand  bg-slate-600">
-        <div class="p-5">
-        </div>
+
+    {% include "partials/sidebar.html" %}
+
+    <!-- Content Area -->
+    <div class="h-svh w-full overflow-y-auto bg-surface dark:bg-surface-dark">
+        <!-- Top Navbar -->
+        {% include "partials/top-navbar.html" %}
     </div>
-</body>
+    <!-- Content Area -->
+</div>
+
 {% endblock body %}

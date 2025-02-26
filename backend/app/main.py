@@ -2,6 +2,7 @@ import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.v1.routes import v1_api_router
 from app.core.database import session_manager
@@ -33,6 +34,14 @@ app = FastAPI(
     lifespan=lifespan,
     title="FastAPI Demo",
     docs_url="/api/docs",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permite todas as origens
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
