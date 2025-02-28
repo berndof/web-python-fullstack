@@ -12,13 +12,16 @@ templates = Jinja2Templates(directory="src/")
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse(
-        request=request, name="pages/home.html", context={"name": "bernardo"}
-    )
+    return templates.TemplateResponse(request=request, name="pages/index.html")
 
 
 @app.get("/login", response_class=HTMLResponse)
 async def login(request: Request):
+    return templates.TemplateResponse(request=request, name="pages/login.html")
+
+
+@app.get("/chunks/{pagechunk_name}", response_class=HTMLResponse)
+async def partials(request: Request, pagechunk_name: str):
     return templates.TemplateResponse(
-        request=request, name="pages/login.html", context={"name": "bernardo"}
+        request=request, name=f"chunks/{pagechunk_name}.html"
     )
